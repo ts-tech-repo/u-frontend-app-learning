@@ -24,6 +24,7 @@ const HeaderSlot = ({
       courseNumber={courseNumber}
       courseTitle={courseTitle}
       showUserDropdown={showUserDropdown}
+      showThemeToggle={false}
     />
   </PluginSlot>
 );

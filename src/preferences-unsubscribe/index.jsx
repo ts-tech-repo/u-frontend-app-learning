@@ -47,7 +47,7 @@ const PreferencesUnsubscribe = () => {
 
   return (
     <div style={{ height: '100vh' }}>
-      <Header />
+      <Header showThemeToggle={false} />
       <Container size="xs" className="h-75 mx-auto my-auto">
         <div className="d-flex flex-row h-100">
           <div className="mx-auto my-auto">

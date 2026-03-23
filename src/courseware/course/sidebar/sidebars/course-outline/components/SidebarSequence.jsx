@@ -31,13 +31,27 @@ const SidebarSequence = ({
   const { activeSequenceId, units, isEnabledCompletionTracking } = useCourseOutlineSidebar();
   const isActiveSequence = id === activeSequenceId;
 
+  // Split up the title on '(' for Problem Sets
+  const problemTitle = title
+  .split('(')
+  .filter((part, index) =>
+    index === 0 || !part.toLowerCase().includes('question')
+  )
+  .map((part, index) =>
+    index === 0 ? part.trim() : '(' + part.trim()
+  )
+  .join(' ')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+
+
   const sectionTitle = (
     <>
       <div className="col-auto p-0" style={{ fontSize: '1.1rem' }}>
         <CompletionIcon completionStat={completionStat} enabled={isEnabledCompletionTracking} />
       </div>
       <div className="col-9 d-flex flex-column flex-grow-1 ml-3 mr-auto p-0 text-left">
-        <span className="align-middle text-dark-500">{title}</span>
+        <span className="align-middle text-dark-500">{problemTitle}</span>
         {specialExamInfo && <span className="align-middle small text-muted">{specialExamInfo}</span>}
         {isEnabledCompletionTracking && (
           <span className="sr-only">

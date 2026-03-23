@@ -16,7 +16,7 @@ const CourseHandouts = () => {
     handoutsHtml,
   } = useModel('outline', courseId);
 
-  if (!handoutsHtml) {
+  if (!handoutsHtml || handoutsHtml === '<p>&nbsp;</p>') {
     return null;
   }
 
