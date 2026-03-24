@@ -26,6 +26,18 @@ const SidebarUnit = ({
 
   const iconType = isLocked ? UNIT_ICON_TYPES.lock : icon;
   const completeAndEnabled = complete && isCompletionTrackingEnabled;
+  // Split up the title on '(' for Problem Sets
+  const problemTitle = title
+  .split('(')
+  .filter((part, index) =>
+    index === 0 || !part.toLowerCase().includes('question')
+  )
+  .map((part, index) =>
+    index === 0 ? part.trim() : '(' + part.trim()
+  )
+  .join(' ')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
 
   return (
     <li className={classNames({ 'bg-info-100': isActive, 'border-top border-light': !isFirst })}>
@@ -42,7 +54,7 @@ const SidebarUnit = ({
         </div>
         <div className="col-10 p-0 ml-3 text-break">
           <span className="align-middle">
-            {title}
+            {problemTitle}
           </span>
           {isCompletionTrackingEnabled && (
             <span className="sr-only">
