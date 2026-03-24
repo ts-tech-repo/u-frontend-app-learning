@@ -26,21 +26,19 @@ const SequenceTitle: React.FC<Props> = ({
   const intl = useIntl();
   const courseId = useContextId();
   const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
-  let displayTitle = showLink ? coursewareUrl : title;
-  
-  if (displayTitle === title) {
-    displayTitle = title
-    .split('(')
-    .filter((part, index) =>
-      index === 0 || !part.toLowerCase().includes('question')
-    )
-    .map((part, index) =>
-      index === 0 ? part.trim() : '(' + part.trim()
-    )
-    .join(' ')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-  }
+  // Split up the title on '(' for Problem Sets
+  const problemTitle = title
+  .split('(')
+  .filter((part, index) =>
+    index === 0 || !part.toLowerCase().includes('question')
+  )
+  .map((part, index) =>
+    index === 0 ? part.trim() : '(' + part.trim()
+  )
+  .join(' ')
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+  let displayTitle = showLink ? coursewareUrl : problemTitle;
 
   return (
     <div className="row w-100 m-0">
