@@ -469,6 +469,10 @@
   padding: 24px !important;
 }
 
+#dashboard-container #dashboard-content{
+  min-height: 100vh !important;
+}
+
 
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
