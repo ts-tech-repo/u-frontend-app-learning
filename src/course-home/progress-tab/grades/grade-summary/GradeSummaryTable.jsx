@@ -112,7 +112,7 @@ const GradeSummaryTable = ({ setAllOfSomeAssignmentTypeIsLocked }) => {
 
   return (
     <>
-      <ul className="micro mb-3 pl-3 text-gray-700">
+      <ul className="micro mb-3 text-gray-700" style={{padding: "0 40px"}}>
         <li>
           <b>{intl.formatMessage(messages.hiddenScoreLabel)}: </b>
           {intl.formatMessage(messages.hiddenScoreInfoText)}

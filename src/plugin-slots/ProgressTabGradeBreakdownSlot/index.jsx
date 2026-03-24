@@ -15,7 +15,7 @@ const ProgressTabGradeBreakdownSlot = () => {
       idAliases={['progress_tab_grade_breakdown_slot']}
     >
       <div
-        className={`grades my-4 p-4 rounded raised-card ${applyLockedOverlay}`}
+        className={`grades my-4 p-4 rounded raised-card bg-white ${applyLockedOverlay}`}
         aria-hidden={gradesFeatureIsFullyLocked}
       >
         <GradeSummary />

@@ -20,7 +20,7 @@ const GradeSummary = () => {
   }
 
   return (
-    <section className="text-dark-700 mb-4">
+    <section className="text-dark-700 mb-4 bg-white" style={{borderRadius: "10px"}}>
       <GradeSummaryHeader allOfSomeAssignmentTypeIsLocked={allOfSomeAssignmentTypeIsLocked} />
       <GradeSummaryTable setAllOfSomeAssignmentTypeIsLocked={setAllOfSomeAssignmentTypeIsLocked} />
     </section>

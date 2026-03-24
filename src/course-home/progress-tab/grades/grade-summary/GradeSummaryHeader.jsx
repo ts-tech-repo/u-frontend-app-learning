@@ -24,7 +24,7 @@ const GradeSummaryHeader = ({ allOfSomeAssignmentTypeIsLocked }) => {
   return (
     <Stack gap={2} className="mb-3">
       <Stack direction="horizontal" gap={2}>
-        <h3 className="h4 m-0">{intl.formatMessage(messages.gradeSummary)}</h3>
+        <h3 className="h4 m-0 px-4 pt-3">{intl.formatMessage(messages.gradeSummary)}</h3>
         <OverlayTrigger
           trigger="hover"
           placement="top"

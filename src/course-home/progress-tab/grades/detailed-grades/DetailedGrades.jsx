@@ -53,9 +53,9 @@ const DetailedGrades = () => {
   );
 
   return (
-    <section className="text-dark-700">
-      <h3 className="h4">{intl.formatMessage(messages.detailedGrades)}</h3>
-      <ul className="micro mb-3 pl-3 text-gray-700">
+    <section className="text-dark-700 bg-white" style={{borderRadius: "10px"}}>
+      <h3 className="h4 px-4 pt-3">{intl.formatMessage(messages.detailedGrades)}</h3>
+      <ul className="micro mb-3 text-gray-700" style={{padding: "0 40px"}}>
         <li>
           <b>{intl.formatMessage(messages.practiceScoreLabel)} </b>
           {intl.formatMessage(messages.practiceScoreInfoText)}
