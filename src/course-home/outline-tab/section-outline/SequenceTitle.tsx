@@ -25,7 +25,6 @@ const SequenceTitle: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const courseId = useContextId();
-  const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{title}</Link>;
   // Split up the title on '(' for Problem Sets
   const problemTitle = title
   .split('(')
@@ -38,6 +37,8 @@ const SequenceTitle: React.FC<Props> = ({
   .join(' ')
   .replace(/\s{2,}/g, ' ')
   .trim();
+
+  const coursewareUrl = <Link to={`/course/${courseId}/${id}`}>{problemTitle}</Link>;
   let displayTitle = showLink ? coursewareUrl : problemTitle;
 
   return (
