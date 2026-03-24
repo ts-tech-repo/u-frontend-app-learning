@@ -37,7 +37,7 @@ const ProgressTab = () => {
         </div>
 
         {/* Side panel */}
-        <div className="col-12 col-md-4 p-0 px-md-4">
+        <div className="col-12 col-md-4 p-0 px-md-4 d-none">
           <ProgressTabCertificateStatusSidePanelSlot />
           <ProgressTabRelatedLinksSlot />
         </div>

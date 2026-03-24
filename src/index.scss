@@ -460,6 +460,11 @@
   background-color: var(--pgn-color-white) !important;
 }
 
+.course-tabs-navigation .nav.nav-underline-tabs a {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+
 .course-tabs-navigation+.container-xl>.row>.col-12.col-md-8.p-0 .rounded.raised-card.grades{
   padding: 24px !important;
 }
