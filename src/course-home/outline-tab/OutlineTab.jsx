@@ -127,6 +127,7 @@ const OutlineTab = () => {
         <AccountActivationAlert />
         <div className="col-12">
           <AlertList
+            className={"bg-white"}
             topic="outline-private-alerts"
             customAlerts={{
               ...privateCourseAlert,
