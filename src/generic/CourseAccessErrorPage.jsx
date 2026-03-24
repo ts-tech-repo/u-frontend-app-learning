@@ -33,7 +33,7 @@ const CourseAccessErrorPage = () => {
         <PageLoading
           srMessage={intl.formatMessage(messages.loading)}
         />
-        <FooterSlot />
+        {/* <FooterSlot /> */}
       </>
     );
   }
@@ -52,7 +52,7 @@ const CourseAccessErrorPage = () => {
           }}
         />
       </main>
-      <FooterSlot />
+      {/* <FooterSlot /> */}
     </>
   );
 };
