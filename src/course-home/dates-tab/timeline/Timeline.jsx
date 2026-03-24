@@ -61,7 +61,7 @@ const Timeline = () => {
   }
 
   return (
-    <ul className="list-unstyled m-0 mt-4 pt-2">
+    <ul className="list-unstyled m-0 mt-4 pt-2 bg-white mb-4 p-4">
       {groupedDates.map((groupedDate) => (
         <Day key={groupedDate.date} {...groupedDate} />
       ))}

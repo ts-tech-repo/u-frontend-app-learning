@@ -156,7 +156,7 @@ const OutlineTab = () => {
             <>
               <div id="expand-button-row" className="row w-100 m-0 mb-3 justify-content-end">
                 <div className="col-12 col-md-auto p-0">
-                  <Button ref={expandButtonRef} variant="outline-primary" block onClick={() => { setExpandAll(!expandAll); }}>
+                  <Button ref={expandButtonRef} className="bg-white" variant="outline-primary" block onClick={() => { setExpandAll(!expandAll); }}>
                     {expandAll ? intl.formatMessage(messages.collapseAll) : intl.formatMessage(messages.expandAll)}
                   </Button>
                 </div>
@@ -170,7 +170,7 @@ const OutlineTab = () => {
           )}
         </div>
         {rootCourseId && (
-          <div className="col col-12 col-md-4">
+          <div className="col col-12 col-md-4 d-none">
             <ProctoringInfoPanel />
             { /** Defer showing the goal widget until the ProctoringInfoPanel has resolved or has been determined as
              disabled to avoid components bouncing around too much as screen is rendered */ }

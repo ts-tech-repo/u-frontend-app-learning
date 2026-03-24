@@ -10,10 +10,11 @@
     flex-direction: column;
     min-height: 100svh;
   }
-  
+
   main {
     flex-grow: 1;
   }
+
   #main-content {
     flex-grow: 1;
     display: flex;
@@ -32,6 +33,7 @@
       position: static;
       height: auto;
       margin-right: 1rem;
+
       img {
         display: block;
         // height: 100%;
@@ -178,6 +180,7 @@
 
   .sequence-navigation-tabs {
     overflow: auto;
+
     .btn {
       flex-basis: 100%;
       min-width: 3rem;
@@ -192,7 +195,7 @@
     max-width: 28rem;
   }
 
-  .navigation-tab-width-medium{
+  .navigation-tab-width-medium {
     max-width: 23.5rem;
   }
 
@@ -207,7 +210,7 @@
       justify-content: flex-start;
       border-right: 0;
 
-      & + .btn {
+      &+.btn {
         border-top: 0;
       }
 
@@ -376,7 +379,7 @@
   // I don't like this.  We need to set a height of 100% on a div created by react-focus-on, a
   // package we use in our Modal.  That div has no class name or ID, so instead we're uniquely
   // identifying it by based on a unique attribute it has which its siblings don't share.
-  > div[data-focus-lock-disabled="false"] {
+  >div[data-focus-lock-disabled="false"] {
     height: 100%;
   }
 
@@ -398,6 +401,7 @@
   &.grades {
     overflow: hidden;
     max-height: 852px;
+
     @media screen and (min-width: 992px) {
       max-height: 920px;
     }
@@ -439,17 +443,27 @@
   .course-outline-tab .pgn__card {
     .pgn__card-header {
       display: block;
-  
+
       .pgn__card-header-content {
         margin-top: 0;
       }
     }
-    
+
     .pgn__card-header-actions {
       margin-left: 0;
     }
   }
 }
+
+#root .course-outline-tab .col-12.col-md-auto.p-0 .btn,
+.course-tabs-navigation .nav.nav-underline-tabs a {
+  background-color: var(--pgn-color-white) !important;
+}
+
+.course-tabs-navigation+.container-xl>.row>.col-12.col-md-8.p-0 .rounded.raised-card.grades{
+  padding: 24px !important;
+}
+
 
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
