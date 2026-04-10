@@ -7,7 +7,12 @@ import messages from './messages';
 import Tabs from '../generic/tabs/Tabs';
 import { CoursewareSearch, CoursewareSearchToggle } from '../course-home/courseware-search';
 import { useCoursewareSearchState } from '../course-home/courseware-search/hooks';
+const [isDark, setIsDark] = useState(false);
 
+useEffect(() => {
+  const theme = document.body.getAttribute('data-paragon-theme-variant');
+  setIsDark(theme === 'dark');
+}, []);
 const CourseTabsNavigation = ({
   activeTabSlug, className, tabs,
 }) => {
@@ -31,7 +36,9 @@ const CourseTabsNavigation = ({
                   key={slug}
                   className={classNames('nav-item flex-shrink-0 nav-link custom-nav-item', { active: slug === activeTabSlug })}
                   href={url}
-                  style={{ background: '#000' }}
+                  style={{
+                    background: isDark ? 'black' : 'white',
+                  }}
                 >
                   {title}
                 </a>
