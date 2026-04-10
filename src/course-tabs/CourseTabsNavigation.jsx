@@ -38,7 +38,7 @@ const CourseTabsNavigation = ({
                   className={classNames('nav-item flex-shrink-0 nav-link custom-nav-item', { active: slug === activeTabSlug })}
                   href={url}
                   style={{
-                    background: isDark ? 'black !important' : 'white !important',
+                    background: isDark ? 'black' : 'white',
                   }}
                 >
                   {title}
