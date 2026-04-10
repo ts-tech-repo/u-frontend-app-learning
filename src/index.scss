@@ -88,6 +88,7 @@
     border: solid 1px #eaeaea;
     border-radius: 4px;
   }
+  border: none !important;
 }
 
 .sequence-navigation-container {
@@ -293,6 +294,7 @@
 }
 
 .unit-container {
+  background-color: var(--pgn-color-white) !important;
   padding-top: 0;
   padding-bottom: 2rem;
   max-width: 1024px;
@@ -473,6 +475,18 @@
   min-height: 100vh !important;
 }
 
+#root .sequence-container .sequence .unit-navigation a svg, #root .sequence-container .sequence .unit-navigation button svg{
+  display: block !important;
+}
+
+.course-tabs-navigation 
+.row > .col-12.col-sm-auto.p-0.custom-heading-box {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  padding-top: 10px !important;
+  background: var(--pgn-color-white) !important;
+  border-radius: 5px;
+}
 
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
