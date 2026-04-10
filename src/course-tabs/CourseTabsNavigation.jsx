@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import classNames from 'classnames';
@@ -13,12 +13,6 @@ const CourseTabsNavigation = ({
 }) => {
   const intl = useIntl();
   const { show } = useCoursewareSearchState();
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const theme = document.documentElement.getAttribute('data-paragon-theme-variant');
-    setIsDark(theme === 'dark');
-  }, []);
 
   return (
     <div id="courseTabsNavigation" className={classNames('course-tabs-navigation', className)}>
@@ -37,9 +31,6 @@ const CourseTabsNavigation = ({
                   key={slug}
                   className={classNames('nav-item flex-shrink-0 nav-link custom-nav-item', { active: slug === activeTabSlug })}
                   href={url}
-                  style={{
-                    background: isDark ? 'black' : 'white',
-                  }}
                 >
                   {title}
                 </a>
