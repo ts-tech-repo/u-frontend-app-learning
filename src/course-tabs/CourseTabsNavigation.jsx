@@ -7,17 +7,18 @@ import messages from './messages';
 import Tabs from '../generic/tabs/Tabs';
 import { CoursewareSearch, CoursewareSearchToggle } from '../course-home/courseware-search';
 import { useCoursewareSearchState } from '../course-home/courseware-search/hooks';
-const [isDark, setIsDark] = useState(false);
 
-useEffect(() => {
-  const theme = document.body.getAttribute('data-paragon-theme-variant');
-  setIsDark(theme === 'dark');
-}, []);
 const CourseTabsNavigation = ({
   activeTabSlug, className, tabs,
 }) => {
   const intl = useIntl();
   const { show } = useCoursewareSearchState();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const theme = document.documentElement.getAttribute('data-paragon-theme-variant');
+    setIsDark(theme === 'dark');
+  }, []);
 
   return (
     <div id="courseTabsNavigation" className={classNames('course-tabs-navigation', className)}>
