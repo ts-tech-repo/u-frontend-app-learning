@@ -26,10 +26,12 @@ const CourseTabsNavigation = ({
               {tabs
             .filter(tab => tab.title !== 'Dates') // hide the "Dates" tab
             .map(({ url, title, slug }) => (
+              
                 <a
                   key={slug}
                   className={classNames('nav-item flex-shrink-0 nav-link custom-nav-item', { active: slug === activeTabSlug })}
                   href={url}
+                  style={{ background: '#000' }}
                 >
                   {title}
                 </a>
