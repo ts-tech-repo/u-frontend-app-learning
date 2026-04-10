@@ -487,6 +487,17 @@
   border-radius: 5px;
 }
 
+html[data-paragon-theme-variant="dark"] #courseHome-outline .pgn_collapsible {
+  background-color: #000 !important;
+}
+
+html body[data-paragon-theme-variant="dark"] 
+.course-tabs-navigation .nav.nav-underline-tabs a,
+html body[data-paragon-theme-variant="dark"] 
+.course-tabs-navigation .nav.nav-underline-tabs button {
+  background: #000 !important;
+}
+
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
 @import "courseware/course/sidebar/sidebars/discussions/Discussions.scss";
