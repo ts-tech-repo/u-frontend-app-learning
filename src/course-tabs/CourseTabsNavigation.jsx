@@ -28,7 +28,7 @@ const CourseTabsNavigation = ({
             .map(({ url, title, slug }) => (
                 <a
                   key={slug}
-                  className={classNames('nav-item flex-shrink-0 nav-link', { active: slug === activeTabSlug })}
+                  className={classNames('nav-item flex-shrink-0 nav-link custom-nav-item', { active: slug === activeTabSlug })}
                   href={url}
                 >
                   {title}
