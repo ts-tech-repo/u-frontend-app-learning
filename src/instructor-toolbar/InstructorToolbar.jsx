@@ -68,6 +68,26 @@ const InstructorToolbar = (props) => {
   const accessExpirationMasqueradeBanner = useAccessExpirationMasqueradeBanner(courseId, tab);
   const courseStartDateMasqueradeBanner = useCourseStartMasqueradeBanner(courseId, tab);
 
+  const getMasqueradeErrorMessage = (masqueradeErrorMessage) => {
+    if (!masqueradeErrorMessage) return null;
+
+    const { message, link, linkText } = masqueradeErrorMessage;
+
+    if (!linkText || !message.includes(linkText)) {
+      return <span>{message}</span>;
+    }
+
+    const parts = message.split(linkText);
+
+    return (
+      <span>
+        {parts[0]}
+        <a href={link}>{linkText}</a>
+        {parts[1]}
+      </span>
+    );
+  };
+
   return (!didMount ? null : (
     <div data-testid="instructor-toolbar">
       <div className="bg-primary text-white">
@@ -94,23 +114,13 @@ const InstructorToolbar = (props) => {
         </div>
       </div>
       
-      {masqueradeErrorMessage && (() => {
-        const { message, link, linkText } = masqueradeErrorMessage;
-
-        if (!linkText) {
-          return <span>{message}</span>;
-        }
-
-        const parts = message.split(linkText);
-
-        return (
-          <span>
-            {parts[0]}
-            <a href={link}>{linkText}</a>
-            {parts[1]}
-          </span>
-        );
-      })()}
+      {masqueradeErrorMessage && (
+        <div className="container-xl mt-3">
+          <Alert type={ALERT_TYPES.ERROR} dismissible={false}>
+            {getMasqueradeErrorMessage(masqueradeErrorMessage)}
+          </Alert>
+        </div>
+      )}
       <AlertList
         topic="instructor-toolbar-alerts"
         customAlerts={{
