@@ -63,7 +63,7 @@ const InstructorToolbar = (props) => {
 
   const urlInsights = getInsightsUrl(courseId);
   const urlStudio = getStudioUrl(courseId, unitId);
-  const [masqueradeErrorMessage, showMasqueradeError] = useState<MasqueradeError | null>(null);
+  const [masqueradeErrorMessage, showMasqueradeError] = useState(null);
   const { formatMessage } = useIntl();
   const accessExpirationMasqueradeBanner = useAccessExpirationMasqueradeBanner(courseId, tab);
   const courseStartDateMasqueradeBanner = useCourseStartMasqueradeBanner(courseId, tab);
