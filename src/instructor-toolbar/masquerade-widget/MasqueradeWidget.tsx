@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from '@edx/frontend-platform/i18n';
+import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 
 import { MasqueradeUserNameInput } from './MasqueradeUserNameInput';
@@ -20,6 +21,7 @@ interface Props {
 
 export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
   const intl = useIntl();
+
   const [autoFocus, setAutoFocus] = React.useState(false);
   const [active, setActive] = React.useState<ActiveMasqueradeData>({
     courseKey: '',
@@ -31,6 +33,9 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
   });
   const [available, setAvailable] = React.useState<MasqueradeOption[]>([]);
   const [shouldShowUserNameInput, setShouldShowUserNameInput] = React.useState(false);
+
+  // LMS root URL from frontend config
+  const lmsRootUrl = getConfig().LMS_BASE_URL || '/';
 
   React.useEffect(() => {
     if (active.courseKey === courseId) {
@@ -49,21 +54,30 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
       } else {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
-        onError('Unable to get masquerade options');
-      }
-    }).catch((response) => {
+          onError(
+            `Your session has expired. <a href="${lmsRootUrl}/login" target="_self">Click here to go to login</a>.`
+          );
+        }
+      }).catch((response) => {
       // There's not much we can do to recover;
       // if we can't fetch masquerade options,
       // assume it's disabled/unavailable.
       // eslint-disable-next-line no-console
-      console.error('Unable to get masquerade options', response);
-    });
-  }, [courseId, onError]);
+        console.error('Unable to get masquerade options', response);
 
-  const handleSubmit = React.useCallback(async (payload: Payload) => {
-    onError(''); // Clear any error
-    return postMasqueradeOptions(courseId, payload);
-  }, [courseId]);
+        onError(
+          `Unable to fetch masquerade options. <a href="${lmsRootUrl}/login" target="_self">Click here to login again</a>.`
+        );
+      });
+  }, [courseId, onError, active.courseKey, lmsRootUrl]);
+
+  const handleSubmit = React.useCallback(
+    async (payload: Payload) => {
+      onError(''); // Clear any existing error
+      return postMasqueradeOptions(courseId, payload);
+    },
+    [courseId, onError]
+  );
 
   const toggle = React.useCallback((
     show: boolean | undefined,
