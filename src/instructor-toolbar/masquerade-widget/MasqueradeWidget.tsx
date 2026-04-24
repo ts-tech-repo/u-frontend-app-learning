@@ -13,10 +13,11 @@ import {
   postMasqueradeOptions,
 } from './data/api';
 import messages from './messages';
+import { MasqueradeError } from '.';
 
 interface Props {
   courseId: string;
-  onError: (error: string) => void;
+  onError: (error: MasqueradeError) => void;
 }
 
 export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
@@ -54,9 +55,11 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
       } else {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
-          onError(
-            `Your session has expired. <a href="${lmsRootUrl}/login" target="_self">Click here to go to login</a>.`
-          );
+          onError({
+            message: 'Your session has expired.',
+            link: `${lmsRootUrl}/login`,
+            linkText: 'Go to login',
+          });
         }
       }).catch((response) => {
       // There's not much we can do to recover;
@@ -64,16 +67,19 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
       // assume it's disabled/unavailable.
       // eslint-disable-next-line no-console
         console.error('Unable to get masquerade options', response);
-
-        onError(
-          `Unable to fetch masquerade options. <a href="${lmsRootUrl}/login" target="_self">Click here to login again</a>.`
-        );
+        onError({
+            message: 'Your session has expired.',
+            link: `${lmsRootUrl}/login`,
+            linkText: 'Go to login',
+          });
       });
   }, [courseId, onError, active.courseKey, lmsRootUrl]);
 
   const handleSubmit = React.useCallback(
     async (payload: Payload) => {
-      onError(''); // Clear any existing error
+      onError({
+      message: intl.formatMessage(messages.genericError),
+    });
       return postMasqueradeOptions(courseId, payload);
     },
     [courseId, onError]

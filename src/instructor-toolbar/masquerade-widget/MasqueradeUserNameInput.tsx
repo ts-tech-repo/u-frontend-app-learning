@@ -4,9 +4,10 @@ import { Form } from '@openedx/paragon';
 
 import { MasqueradeStatus, Payload } from './data/api';
 import messages from './messages';
+import { MasqueradeError } from '.';
 
 interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onSubmit' | 'onError'> {
-  onError: (error: string) => void;
+  onError: (error: MasqueradeError) => void;
   onSubmit: (payload: Payload) => Promise<MasqueradeStatus>;
 }
 
@@ -23,11 +24,14 @@ export const MasqueradeUserNameInput: React.FC<Props> = ({ onSubmit, onError, ..
         global.location.reload();
       } else {
         const error = (data && data.error) || '';
-        onError(error);
+        onError({
+          message: error || intl.formatMessage(messages.genericError),
+        });
       }
     }).catch(() => {
-      const message = intl.formatMessage(messages.genericError);
-      onError(message);
+      onError({
+        message: intl.formatMessage(messages.genericError),
+      });
     });
     return true;
   }, [onError]);

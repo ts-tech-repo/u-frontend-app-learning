@@ -63,7 +63,7 @@ const InstructorToolbar = (props) => {
 
   const urlInsights = getInsightsUrl(courseId);
   const urlStudio = getStudioUrl(courseId, unitId);
-  const [masqueradeErrorMessage, showMasqueradeError] = useState(null);
+  const [masqueradeErrorMessage, showMasqueradeError] = useState<MasqueradeError | null>(null);
   const { formatMessage } = useIntl();
   const accessExpirationMasqueradeBanner = useAccessExpirationMasqueradeBanner(courseId, tab);
   const courseStartDateMasqueradeBanner = useCourseStartMasqueradeBanner(courseId, tab);
@@ -95,11 +95,16 @@ const InstructorToolbar = (props) => {
       </div>
       {masqueradeErrorMessage && (
         <div className="container-xl mt-3">
-          <Alert
-            type={ALERT_TYPES.ERROR}
-            dismissible={false}
-          >
-            {masqueradeErrorMessage}
+          <Alert type={ALERT_TYPES.ERROR} dismissible={false}>
+            <span>
+              {masqueradeErrorMessage.message}{' '}
+
+              {masqueradeErrorMessage.link && (
+                <a href={masqueradeErrorMessage.link}>
+                  {masqueradeErrorMessage.linkText || 'Open link'}
+                </a>
+              )}
+            </span>
           </Alert>
         </div>
       )}
