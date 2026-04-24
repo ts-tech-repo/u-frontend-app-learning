@@ -67,6 +67,8 @@ const InstructorToolbar = (props) => {
   const { formatMessage } = useIntl();
   const accessExpirationMasqueradeBanner = useAccessExpirationMasqueradeBanner(courseId, tab);
   const courseStartDateMasqueradeBanner = useCourseStartMasqueradeBanner(courseId, tab);
+  const { message, link, linkText } = masqueradeErrorMessage;
+  const parts = message.split(linkText);
 
   return (!didMount ? null : (
     <div data-testid="instructor-toolbar">
@@ -93,16 +95,19 @@ const InstructorToolbar = (props) => {
           )}
         </div>
       </div>
+      
       {masqueradeErrorMessage && (
         <div className="container-xl mt-3">
           <Alert type={ALERT_TYPES.ERROR} dismissible={false}>
             <span>
-              {masqueradeErrorMessage.message}{' '}
-
-              {masqueradeErrorMessage.link && (
-                <a href={masqueradeErrorMessage.link}>
-                  {masqueradeErrorMessage.linkText || 'Open link'}
-                </a>
+              {linkText ? (
+                <>
+                  {parts[0]}
+                  <a href={link}>{linkText}</a>
+                  {parts[1]}
+                </>
+              ) : (
+                message
               )}
             </span>
           </Alert>

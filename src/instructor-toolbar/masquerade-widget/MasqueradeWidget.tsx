@@ -35,8 +35,8 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
   const [available, setAvailable] = React.useState<MasqueradeOption[]>([]);
   const [shouldShowUserNameInput, setShouldShowUserNameInput] = React.useState(false);
 
-  // LMS root URL from frontend config
-  const lmsRootUrl = getConfig().LMS_BASE_URL || '/';
+  // AUTHN MICROFRONTEND URL from frontend config
+  const authnLoginUrl = getConfig().AUTHN_MICROFRONTEND_URL || '/';
 
   React.useEffect(() => {
     if (active.courseKey === courseId) {
@@ -56,9 +56,9 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
           onError({
-            message: 'Your session has expired.',
-            link: `${lmsRootUrl}/login`,
-            linkText: 'Go to login',
+            message: 'Your session has expired. Click here to log in.',
+            link: `${authnLoginUrl}/login`,
+            linkText: 'here',
           });
         }
       }).catch((response) => {
@@ -68,12 +68,12 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
       // eslint-disable-next-line no-console
         console.error('Unable to get masquerade options', response);
         onError({
-            message: 'Your session has expired.',
-            link: `${lmsRootUrl}/login`,
-            linkText: 'Go to login',
+            message: 'Your session has expired. Click here to log in.',
+            link: `${authnLoginUrl}/login`,
+            linkText: 'here',
           });
       });
-  }, [courseId, onError, active.courseKey, lmsRootUrl]);
+  }, [courseId, onError, active.courseKey, authnLoginUrl]);
 
   const handleSubmit = React.useCallback(
     async (payload: Payload) => {
