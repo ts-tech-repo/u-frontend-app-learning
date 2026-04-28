@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from '@edx/frontend-platform/i18n';
+import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 
 import { MasqueradeUserNameInput } from './MasqueradeUserNameInput';
@@ -12,14 +13,16 @@ import {
   postMasqueradeOptions,
 } from './data/api';
 import messages from './messages';
+import { MasqueradeError } from '.';
 
 interface Props {
   courseId: string;
-  onError: (error: string) => void;
+  onError: (error: MasqueradeError) => void;
 }
 
 export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
   const intl = useIntl();
+
   const [autoFocus, setAutoFocus] = React.useState(false);
   const [active, setActive] = React.useState<ActiveMasqueradeData>({
     courseKey: '',
@@ -31,6 +34,9 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
   });
   const [available, setAvailable] = React.useState<MasqueradeOption[]>([]);
   const [shouldShowUserNameInput, setShouldShowUserNameInput] = React.useState(false);
+
+  // AUTHN MICROFRONTEND URL from frontend config
+  const authnLoginUrl = getConfig().AUTHN_MICROFRONTEND_URL || '/';
 
   React.useEffect(() => {
     if (active.courseKey === courseId) {
@@ -49,21 +55,35 @@ export const MasqueradeWidget: React.FC<Props> = ({ courseId, onError }) => {
       } else {
         // This was explicitly denied by the backend;
         // assume it's disabled/unavailable.
-        onError('Unable to get masquerade options');
-      }
-    }).catch((response) => {
+          onError({
+            message: 'Your session has expired. Click here to log in.',
+            link: `${authnLoginUrl}/login`,
+            linkText: 'here',
+          });
+        }
+      }).catch((response) => {
       // There's not much we can do to recover;
       // if we can't fetch masquerade options,
       // assume it's disabled/unavailable.
       // eslint-disable-next-line no-console
-      console.error('Unable to get masquerade options', response);
-    });
-  }, [courseId, onError]);
+        console.error('Unable to get masquerade options', response);
+        onError({
+            message: 'Your session has expired. Click here to log in.',
+            link: `${authnLoginUrl}/login`,
+            linkText: 'here',
+          });
+      });
+  }, [courseId, onError, active.courseKey, authnLoginUrl]);
 
-  const handleSubmit = React.useCallback(async (payload: Payload) => {
-    onError(''); // Clear any error
-    return postMasqueradeOptions(courseId, payload);
-  }, [courseId]);
+  const handleSubmit = React.useCallback(
+    async (payload: Payload) => {
+      onError({
+      message: intl.formatMessage(messages.genericError),
+    });
+      return postMasqueradeOptions(courseId, payload);
+    },
+    [courseId, onError]
+  );
 
   const toggle = React.useCallback((
     show: boolean | undefined,
