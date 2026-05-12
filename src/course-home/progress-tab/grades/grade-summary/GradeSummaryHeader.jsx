@@ -34,11 +34,12 @@ const GradeSummaryHeader = ({ allOfSomeAssignmentTypeIsLocked }) => {
             </Tooltip>
           )}
         >
-          {/* <Icon
+          <Icon
             alt={intl.formatMessage(messages.gradeSummaryTooltipAlt)}
             src={InfoOutline}
             size="sm"
-          /> */}
+            className="d-none"
+          />
         </OverlayTrigger>
       </Stack>
       {!gradesFeatureIsFullyLocked && allOfSomeAssignmentTypeIsLocked && (
