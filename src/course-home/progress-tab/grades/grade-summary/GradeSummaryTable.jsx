@@ -112,7 +112,7 @@ const GradeSummaryTable = ({ setAllOfSomeAssignmentTypeIsLocked }) => {
 
   return (
     <>
-      <ul className="micro mb-3 text-gray-700" style={{padding: "0 40px"}}>
+      {/* <ul className="micro mb-3 text-gray-700" style={{padding: "0 40px"}}>
         <li>
           <b>{intl.formatMessage(messages.hiddenScoreLabel)}: </b>
           {intl.formatMessage(messages.hiddenScoreInfoText)}
@@ -121,7 +121,7 @@ const GradeSummaryTable = ({ setAllOfSomeAssignmentTypeIsLocked }) => {
           <b><Lock style={{ height: '15px' }} />: </b>
           {` ${intl.formatMessage(messages.hiddenScoreLockInfoText)}`}
         </li>
-      </ul>
+      </ul> */}
       <DataTable
         data={gradeSummaryData}
         itemCount={gradeSummaryData.length}
