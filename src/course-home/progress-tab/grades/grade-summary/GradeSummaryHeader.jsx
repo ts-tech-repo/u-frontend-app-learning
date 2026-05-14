@@ -38,6 +38,7 @@ const GradeSummaryHeader = ({ allOfSomeAssignmentTypeIsLocked }) => {
             alt={intl.formatMessage(messages.gradeSummaryTooltipAlt)}
             src={InfoOutline}
             size="sm"
+            className="d-none"
           />
         </OverlayTrigger>
       </Stack>
