@@ -5,6 +5,8 @@ import { getConfig } from "@edx/frontend-platform";
 
 const Footer = () => {
   const { formatMessage } = useIntl();
+  const siteName = getConfig().SITE_NAME;
+
 
     React.useEffect(() => {
     const appendFooterContent = () => {
@@ -59,7 +61,7 @@ const Footer = () => {
           />
         </a>
 
-        <div className="flex-grow-1" style={{justifyContent: "end"}} />
+        <div className="flex-grow-1" style={{display: "flex", justifyContent: "end"}} />
       </div>
     </footer>
   );
