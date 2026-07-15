@@ -41,7 +41,7 @@ const PageNotFound = () => {
           )}
         </p>
       </main>
-      {/* <FooterSlot /> */}
+      <FooterSlot />
     </>
   );
 };
