@@ -7,6 +7,7 @@ import { FooterSlot } from '@edx/frontend-component-footer';
 
 import HeaderSlot from '../plugin-slots/HeaderSlot';
 import messages from './messages';
+import Footer from 'components/Footer';
 
 const PageNotFound = () => {
   const { formatMessage } = useIntl();
@@ -41,7 +42,7 @@ const PageNotFound = () => {
           )}
         </p>
       </main>
-      <FooterSlot />
+      <Footer />
     </>
   );
 };
