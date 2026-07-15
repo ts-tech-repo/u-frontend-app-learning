@@ -10,7 +10,7 @@ import { AlertList } from './user-messages';
 import { fetchDiscussionTab } from '../course-home/data/thunks';
 import PageLoading from './PageLoading';
 import messages from '../tab-page/messages';
-import Footer from 'components/Footer';
+import Footer from '../components/Footer';
 
 const CourseAccessErrorPage = () => {
   const intl = useIntl();
