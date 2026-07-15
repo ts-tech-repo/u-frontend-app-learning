@@ -82,7 +82,7 @@ const TabPage = (props) => {
           {intl.formatMessage(messages.failure)}
         </p>
       )}
-      <Footer />
+      {/* <FooterSlot /> */}
     </>
   );
 };
