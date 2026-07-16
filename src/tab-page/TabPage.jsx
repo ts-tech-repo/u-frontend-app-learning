@@ -16,6 +16,7 @@ import messages from './messages';
 import LoadedTabPage from './LoadedTabPage';
 import { setCallToActionToast } from '../course-home/data/slice';
 import LaunchCourseHomeTourButton from '../product-tours/newUserCourseHomeTour/LaunchCourseHomeTourButton';
+import Footer from '../components/Footer';
 
 const TabPage = (props) => {
   const intl = useIntl();
@@ -81,7 +82,7 @@ const TabPage = (props) => {
           {intl.formatMessage(messages.failure)}
         </p>
       )}
-      {/* <FooterSlot /> */}
+      <Footer />
     </>
   );
 };
