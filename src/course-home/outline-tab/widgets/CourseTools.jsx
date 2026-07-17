@@ -74,7 +74,7 @@ const CourseTools = () => {
             </a>
           </li>
         ))}
-        <li className="small" id="courseHome-launchTourLink">
+        <li className="small d-none" id="courseHome-launchTourLink">
           <LaunchCourseHomeTourButton />
         </li>
       </ul>
