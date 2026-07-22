@@ -7,13 +7,15 @@ const Footer = () => {
   const { formatMessage } = useIntl();
   const siteName = getConfig().SITE_NAME;
 
-  React.useEffect(() => {
+
+    React.useEffect(() => {
     const appendFooterContent = () => {
       if (!document.querySelector(".faq_tag")) {
         const footerElement = document.querySelector(
           "footer.footer .flex-grow-1",
         );
         if (footerElement) {
+
           const poweredByEdx = document.createElement("a");
           poweredByEdx.className = "edx-tag";
           poweredByEdx.href = "https://open.edx.org";
@@ -25,7 +27,7 @@ const Footer = () => {
           if (!document.querySelector("footer.footer p")) {
             const footerNote = document.createElement("p");
             footerNote.textContent = `© ${siteName}. All rights reserved except where noted. edX, Open edX, and their respective logos are registered trademarks of edX Inc.`;
-            footerNote.style.marginBottom = "0";
+             footerNote.style.marginBottom = "0";
             footerNote.style.fontSize = "14px";
             document.querySelector("footer.footer").appendChild(footerNote);
           }
@@ -61,10 +63,7 @@ const Footer = () => {
           />
         </a>
 
-        <div
-          className="flex-grow-1"
-          style={{ display: "flex", justifyContent: "end" }}
-        />
+        <div className="flex-grow-1" style={{display: "flex", justifyContent: "end"}} />
       </div>
     </footer>
   );

@@ -498,6 +498,13 @@ html[data-paragon-theme-variant="dark"] .course-tabs-navigation .nav.nav-underli
 #root .w-100.d-flex.align-items-center div.d-flex.ml-auto .ml-1 button[aria-label="Show notification tray"], #root .w-100.d-flex.align-items-center div.d-flex.ml-auto>div button[aria-label="Show notification tray"] {
   background-color: var(--pgn-color-white) !important;
 }
+.course-tools section {
+  background: var(--pgn-color-primary-light);
+  box-shadow: none !important;
+}
+.dropdown-menu a[href*="/profile"] {
+    display: none;
+}
 
 
 // Import component-specific sass files

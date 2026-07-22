@@ -171,7 +171,7 @@ const OutlineTab = () => {
           )}
         </div>
         {rootCourseId && (
-          <div className="col col-12 col-md-4 d-none">
+          <div className="col col-12 col-md-4 course-tools">
             <ProctoringInfoPanel />
             { /** Defer showing the goal widget until the ProctoringInfoPanel has resolved or has been determined as
              disabled to avoid components bouncing around too much as screen is rendered */ }
