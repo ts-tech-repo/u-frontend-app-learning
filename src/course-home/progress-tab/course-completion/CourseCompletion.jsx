@@ -7,7 +7,7 @@ import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import {
   Button, ModalDialog, Spinner,
-} from '@edx/paragon';
+} from '@openedx/paragon';
 
 import CompletionDonutChart from './CompletionDonutChart';
 import messages from './messages';
