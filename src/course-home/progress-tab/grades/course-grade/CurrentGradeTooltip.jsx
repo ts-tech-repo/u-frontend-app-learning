@@ -7,7 +7,6 @@ import { useContextId } from '../../../../data/hooks';
 import { useModel } from '../../../../generic/model-store';
 
 import messages from '../messages';
-import { offset } from '@popperjs/core';
 
 const CurrentGradeTooltip = ({ tooltipClassName }) => {
   const intl = useIntl();
@@ -43,10 +42,20 @@ const CurrentGradeTooltip = ({ tooltipClassName }) => {
             {
               name: 'offset',
               options: {
-                offset: [0, -10]
-              }
-            }
-          ]
+                offset: [0, -10],
+              },
+            },
+            {
+              name: 'initialPosition',
+              enabled: true,
+              phase: 'afterWrite',
+              fn: ({ instance }) => {
+                requestAnimationFrame(() => {
+                  instance.update();
+                });
+              },
+            },
+          ],
         }}
         overlay={(
           <Popover id={`${isPassing ? 'passing' : 'non-passing'}-grade-tooltip`} aria-hidden="true" className={tooltipClassName}>

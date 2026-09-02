@@ -26,10 +26,20 @@ const PassingGradeTooltip = ({ passingGrade, tooltipClassName }) => {
             {
               name: 'offset',
               options: {
-                offset: [0, -10]
-              }
-            }
-          ]
+                offset: [0, -10],
+              },
+            },
+            {
+              name: 'initialPosition',
+              enabled: true,
+              phase: 'afterWrite',
+              fn: ({ instance }) => {
+                requestAnimationFrame(() => {
+                  instance.update();
+                });
+              },
+            },
+          ],
         }}
         overlay={(
           <Popover id="minimum-grade-tooltip" className={`bg-primary-500 ${tooltipClassName}`} aria-hidden="true">
