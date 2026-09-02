@@ -7,6 +7,7 @@ import { useContextId } from '../../../../data/hooks';
 import { useModel } from '../../../../generic/model-store';
 
 import messages from '../messages';
+import { offset } from '@popperjs/core';
 
 const CurrentGradeTooltip = ({ tooltipClassName }) => {
   const intl = useIntl();
@@ -37,6 +38,16 @@ const CurrentGradeTooltip = ({ tooltipClassName }) => {
       <OverlayTrigger
         show
         placement="top"
+        popperConfig={{
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [0, -10]
+              }
+            }
+          ]
+        }}
         overlay={(
           <Popover id={`${isPassing ? 'passing' : 'non-passing'}-grade-tooltip`} aria-hidden="true" className={tooltipClassName}>
             <Popover.Content data-testid="currentGradeTooltipContent" className={isPassing ? 'text-white' : 'text-dark-700'}>

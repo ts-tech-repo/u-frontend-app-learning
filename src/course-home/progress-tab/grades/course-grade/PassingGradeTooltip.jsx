@@ -4,6 +4,7 @@ import { getLocale, isRtl, useIntl } from '@edx/frontend-platform/i18n';
 import { OverlayTrigger, Popover } from '@openedx/paragon';
 
 import messages from '../messages';
+import { offset } from '@popperjs/core';
 
 const PassingGradeTooltip = ({ passingGrade, tooltipClassName }) => {
   const intl = useIntl();
@@ -20,6 +21,16 @@ const PassingGradeTooltip = ({ passingGrade, tooltipClassName }) => {
       <OverlayTrigger
         show
         placement="bottom"
+        popperConfig={{
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [0, -10]
+              }
+            }
+          ]
+        }}
         overlay={(
           <Popover id="minimum-grade-tooltip" className={`bg-primary-500 ${tooltipClassName}`} aria-hidden="true">
             <Popover.Content className="text-white">
