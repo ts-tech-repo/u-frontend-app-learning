@@ -63,7 +63,7 @@ const messages = defineMessages({
   },
   certificateLocked: {
     id: 'progress.courseCompletion.certificateLocked',
-    defaultMessage: 'Score {minScore}% or higher on every Knowledge Check to unlock your certificate.',
+    defaultMessage: 'Score {minScore}% to unlock your certificate.',
     description: 'Shown under the disabled button when one or more Knowledge Checks are below the passing score',
   },
   certificateNotYetAvailable: {
