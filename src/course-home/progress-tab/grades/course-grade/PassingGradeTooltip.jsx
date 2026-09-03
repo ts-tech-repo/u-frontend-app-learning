@@ -24,12 +24,6 @@ const PassingGradeTooltip = ({ passingGrade, tooltipClassName }) => {
         popperConfig={{
           modifiers: [
             {
-              name: 'offset',
-              options: {
-                offset: [0, -10],
-              },
-            },
-            {
               name: 'initialPosition',
               enabled: true,
               phase: 'afterWrite',
