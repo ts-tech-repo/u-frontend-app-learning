@@ -6,7 +6,7 @@ import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import {
-  Button, ModalDialog, Spinner,
+  Button, ModalDialog,
 } from '@openedx/paragon';
 
 import CompletionDonutChart from './CompletionDonutChart';
@@ -138,44 +138,15 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
             {intl.formatMessage(messages.completionBody)}
           </p>
 
-          {isCheckingEligibility ? (
+          {!isCheckingEligibility && isEligible && (
             <Button
               variant="outline-primary"
               className="mt-2"
-              disabled
+              onClick={handleGenerateCertificate}
             >
-              <Spinner
-                animation="border"
-                size="sm"
-                className="mr-2"
-                screenReaderText={intl.formatMessage(messages.loading)}
-              />
-              {intl.formatMessage(messages.checkingEligibility)}
+              {intl.formatMessage(messages.generateCertificate)}
             </Button>
-          ) : (
-            isEligible && (
-              <Button
-                variant="outline-primary"
-                className="mt-2"
-                onClick={handleGenerateCertificate}
-              >
-                {intl.formatMessage(messages.generateCertificate)}
-              </Button>
-            )
           )}
-
-          {!isCheckingEligibility && !isEligible && (
-            <p className="small text-muted mt-2">
-              {failedChecks.length > 0
-                ? intl.formatMessage(messages.certificateLocked, {
-                  minScore: Math.round(
-                    (eligibilityDetails?.minimum_score || 0.6) * 100,
-                  ),
-                })
-                : intl.formatMessage(messages.certificateNotYetAvailable)}
-            </p>
-          )}
-
           {error && (
             <p className="small text-danger mt-2" role="alert">
               {error}
