@@ -70,6 +70,7 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
   const hideGradeTooltips = useCallback(() => {
     const nonPassingGradeTooltip = $('#non-passing-grade-tooltip');
     const minimumGradeTooltip = $('#minimum-grade-tooltip');
+    const passingGradeTooltip = $('#passing-grade-tooltip');
 
     if (nonPassingGradeTooltip.length && !nonPassingGradeTooltip.hasClass('d-none')) {
       nonPassingGradeTooltip.addClass('d-none');
@@ -77,6 +78,10 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
 
     if (minimumGradeTooltip.length && !minimumGradeTooltip.hasClass('d-none')) {
       minimumGradeTooltip.addClass('d-none');
+    }
+
+    if (passingGradeTooltip.length && !passingGradeTooltip.hasClass('d-none')) {
+      passingGradeTooltip.addClass('d-none');
     }
   }, []);
 
@@ -86,6 +91,7 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
   const showGradeTooltips = useCallback(() => {
     const nonPassingGradeTooltip = $('#non-passing-grade-tooltip');
     const minimumGradeTooltip = $('#minimum-grade-tooltip');
+    const passingGradeTooltip = $('#passing-grade-tooltip');
 
     if (nonPassingGradeTooltip.length && nonPassingGradeTooltip.hasClass('d-none')) {
       nonPassingGradeTooltip.removeClass('d-none');
@@ -93,6 +99,10 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
 
     if (minimumGradeTooltip.length && minimumGradeTooltip.hasClass('d-none')) {
       minimumGradeTooltip.removeClass('d-none');
+    }
+
+    if (passingGradeTooltip.length && passingGradeTooltip.hasClass('d-none')) {
+      passingGradeTooltip.removeClass('d-none');
     }
   }, []);
 
