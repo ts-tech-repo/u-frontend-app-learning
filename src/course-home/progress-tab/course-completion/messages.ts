@@ -51,6 +51,11 @@ const messages = defineMessages({
     defaultMessage: 'Generate Certificate',
     description: 'Button label that opens the survey/certificate flow in an iframe',
   },
+  viewCertificate: {
+    id: 'progress.courseCompletion.viewCertificate',
+    defaultMessage: 'View Certificate',
+    description: 'Button label that opens the survey/certificate flow in an iframe',
+  },
   checkingEligibility: {
     id: 'progress.courseCompletion.checkingEligibility',
     defaultMessage: 'Checking...',

@@ -18,6 +18,7 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
   const courseId = courseIdProp || courseIdFromRoute;
 
   const [isCheckingEligibility, setIsCheckingEligibility] = useState(true);
+  const [isCompleted, setIsCompleted] = useState(false);
   const [isEligible, setIsEligible] = useState(false);
   const [eligibilityDetails, setEligibilityDetails] = useState(null);
 
@@ -46,6 +47,7 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
 
         setIsEligible(Boolean(data && data.eligible));
         setEligibilityDetails(data ? data.eligibility : null);
+        setIsCompleted(Boolean(data && data.completed));
       } catch (err) {
         if (isMounted) {
           setIsEligible(false);
@@ -154,7 +156,7 @@ const CourseCompletion = ({ courseId: courseIdProp }) => {
               className="mt-2"
               onClick={handleGenerateCertificate}
             >
-              {intl.formatMessage(messages.generateCertificate)}
+              {isCompleted ? intl.formatMessage(messages.viewCertificate) : intl.formatMessage(messages.generateCertificate)}
             </Button>
           )}
           {error && (
