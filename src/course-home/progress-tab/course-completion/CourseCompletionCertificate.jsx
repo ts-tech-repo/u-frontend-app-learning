@@ -26,57 +26,13 @@ const CourseCompletionCertificate = ({ courseId: courseIdProp }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(null);
 
-  /**
-   * Hide the grade tooltips while the certificate modal is open.
-   */
-  const hideGradeTooltips = useCallback(() => {
-    const nonPassingGradeTooltip = $('#non-passing-grade-tooltip');
-    const minimumGradeTooltip = $('#minimum-grade-tooltip');
-    const passingGradeTooltip = $('#passing-grade-tooltip');
-
-    if (nonPassingGradeTooltip.length && !nonPassingGradeTooltip.hasClass('d-none')) {
-      nonPassingGradeTooltip.addClass('d-none');
-    }
-
-    if (minimumGradeTooltip.length && !minimumGradeTooltip.hasClass('d-none')) {
-      minimumGradeTooltip.addClass('d-none');
-    }
-
-    if (passingGradeTooltip.length && !passingGradeTooltip.hasClass('d-none')) {
-      passingGradeTooltip.addClass('d-none');
-    }
-  }, []);
-
-  /**
-   * Restore the grade tooltips after the certificate modal closes.
-   */
-  const showGradeTooltips = useCallback(() => {
-    const nonPassingGradeTooltip = $('#non-passing-grade-tooltip');
-    const minimumGradeTooltip = $('#minimum-grade-tooltip');
-    const passingGradeTooltip = $('#passing-grade-tooltip');
-
-    if (nonPassingGradeTooltip.length && nonPassingGradeTooltip.hasClass('d-none')) {
-      nonPassingGradeTooltip.removeClass('d-none');
-    }
-
-    if (minimumGradeTooltip.length && minimumGradeTooltip.hasClass('d-none')) {
-      minimumGradeTooltip.removeClass('d-none');
-    }
-
-    if (passingGradeTooltip.length && passingGradeTooltip.hasClass('d-none')) {
-      passingGradeTooltip.removeClass('d-none');
-    }
-  }, []);
-
   const handleGenerateCertificate = useCallback(() => {
     setError(null);
 
-    hideGradeTooltips();
     setIsModalOpen(true);
   }, [hideGradeTooltips]);
 
   const handleCloseModal = useCallback(() => {
-    showGradeTooltips();
     setIsModalOpen(false);
   }, [showGradeTooltips]);
 
@@ -106,7 +62,7 @@ const CourseCompletionCertificate = ({ courseId: courseIdProp }) => {
             <>
               {/* Congratulatory / status message */}
               <strong
-                className="___1qwroh2 fl43uef f19n0e5"
+                className="___1qwroh2 fl43uef f19n0e5 d-block"
                 data-lexical-text="true"
               >
                 {isCompleted

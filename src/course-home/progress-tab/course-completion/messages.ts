@@ -48,12 +48,12 @@ const messages = defineMessages({
   },
   certificateCongratulations: {
     id: 'progress.courseCompletion.certificateCongratulations',
-    defaultMessage: 'Congratulations! You have successfully achieved a minimum of 60% in all Knowledge Checks. Click here to generate your certificate.',
+    defaultMessage: 'Congratulations! You have successfully achieved a minimum of 60% in all Knowledge Checks. Click to generate your certificate.',
     description: 'Message shown to the learner when all knowledge checks are passed and the certificate is ready to be generated.',
   },
   certificateAlreadyGenerated: {
     id: 'progress.courseCompletion.certificateAlreadyGenerated',
-    defaultMessage: 'Your certificate has already been generated. Click here to view your certificate',
+    defaultMessage: 'Your certificate has already been generated. Click to view your certificate',
     description: 'Message shown to the learner when the certificate has already been generated and can be viewed.',
   },
   generateCertificate: {
