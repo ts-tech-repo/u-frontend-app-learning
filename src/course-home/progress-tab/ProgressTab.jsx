@@ -40,11 +40,7 @@ const ProgressTab = () => {
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
           <ProgressTabCertificateStatusMainBodySlot />
-          {!disableProgressGraph
-            && !isCheckingEligibility
-            && isEligible
-            && allChecksPassed
-            && <CourseCompletionCertificate courseId={courseId} />}
+          {!isCheckingEligibility && isEligible && allChecksPassed && <CourseCompletionCertificate courseId={courseId} />}
           {/* <ProgressTabCourseGradeSlot /> */}
           <ProgressTabGradeBreakdownSlot />
         </div>

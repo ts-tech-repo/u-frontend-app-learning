@@ -101,26 +101,18 @@ const CourseCompletionCertificate = ({ courseId: courseIdProp }) => {
   return (
     <section className="text-dark-700 mb-4 rounded raised-card p-4 bg-white">
       <div className="row w-100 m-0">
-        <div className="col-12 col-sm-6 col-md-7 p-0">
-
+        <div className="p-0">
           {!isCheckingEligibility && isEligible && allChecksPassed && (
             <>
-              {/* Congratulatory / status message - reuses the same handler as the button below */}
-              <button
-                type="button"
-                className="btn-link p-0 border-0 bg-transparent text-left mt-2 d-block"
-                onClick={handleGenerateCertificate}
+              {/* Congratulatory / status message */}
+              <strong
+                className="___1qwroh2 fl43uef f19n0e5"
+                data-lexical-text="true"
               >
-                {isCompleted ? (
-                  <strong className="___1qwroh2 fl43uef f19n0e5" data-lexical-text="true">
-                    {intl.formatMessage(messages.certificateAlreadyGenerated)}
-                  </strong>
-                ) : (
-                  <strong className="___1qwroh2 fl43uef f19n0e5" data-lexical-text="true">
-                    {intl.formatMessage(messages.certificateCongratulations)}
-                  </strong>
-                )}
-              </button>
+                {isCompleted
+                  ? intl.formatMessage(messages.certificateAlreadyGenerated)
+                  : intl.formatMessage(messages.certificateCongratulations)}
+              </strong>
 
               <Button
                 variant="outline-primary"
@@ -143,7 +135,7 @@ const CourseCompletionCertificate = ({ courseId: courseIdProp }) => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         className="certificate-modal-wrapper"
-        hasCloseButton={false} // Disabled default header/close button to ensure "no header"
+        hasCloseButton={false}
       >
         <ModalDialog.Body className="certificate-modal-body">
           <button
