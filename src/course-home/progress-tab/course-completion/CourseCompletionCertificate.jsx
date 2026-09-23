@@ -30,11 +30,11 @@ const CourseCompletionCertificate = ({ courseId: courseIdProp }) => {
     setError(null);
 
     setIsModalOpen(true);
-  }, [hideGradeTooltips]);
+  }, []);
 
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
-  }, [showGradeTooltips]);
+  }, []);
 
   useEffect(() => {
     function handleMessage(event) {
