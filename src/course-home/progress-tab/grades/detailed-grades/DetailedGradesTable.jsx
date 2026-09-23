@@ -55,8 +55,8 @@ const DetailedGradesTable = () => {
                 cellClassName: 'align-top text-right small',
               },
               {
-                Header: `${intl.formatMessage(messages.gradePercent)}`,
-                accessor: 'grade',
+                Header: `${intl.formatMessage(messages.scorePercent)}`,
+                accessor: 'score-percent',
                 headerClassName: 'justify-content-end h5 mb-0',
                 cellClassName: 'align-top text-right small',
               },

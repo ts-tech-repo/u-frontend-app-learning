@@ -21,7 +21,9 @@ const ProgressTab = () => {
   const {
     isCheckingEligibility,
     isEligible,
+    isCompleted,
     allChecksPassed,
+    eligibilityDetails
   } = useCertificateEligibility(courseId);
 
   const windowWidth = useWindowSize().width;
@@ -40,7 +42,12 @@ const ProgressTab = () => {
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
           <ProgressTabCertificateStatusMainBodySlot />
-          {!isCheckingEligibility && isEligible && allChecksPassed && <CourseCompletionCertificate courseId={courseId} />}
+          {!isCheckingEligibility && isEligible && allChecksPassed && 
+            <CourseCompletionCertificate 
+              courseId={courseId} 
+              eligibilityDetails={eligibilityDetails}
+              isCompleted={isCompleted}
+            />}
           {/* <ProgressTabCourseGradeSlot /> */}
           <ProgressTabGradeBreakdownSlot />
         </div>
