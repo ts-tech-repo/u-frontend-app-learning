@@ -33,7 +33,7 @@ const DetailedGradesTable = () => {
       const detailedGradesData = subsectionScores.map((subsection) => ({
         subsectionTitle: <SubsectionTitleCell subsection={subsection} />,
         score: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{subsection.numPointsEarned}{isLocaleRtl ? '\\' : '/'}{subsection.numPointsPossible}</span>,
-        grade: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{`${(subsection.percentGraded * 100).toFixed(2).replace(/\.?0+$/, '')}%`}</span>,
+        scorePercent: <span className={subsection.learnerHasAccess ? '' : 'greyed-out'}>{`${(subsection.percentGraded * 100).toFixed(2).replace(/\.?0+$/, '')}%`}</span>,
       }));
 
       return (
@@ -56,7 +56,7 @@ const DetailedGradesTable = () => {
               },
               {
                 Header: `${intl.formatMessage(messages.scorePercent)}`,
-                accessor: 'score-percent',
+                accessor: 'scorePercent',
                 headerClassName: 'justify-content-end h5 mb-0',
                 cellClassName: 'align-top text-right small',
               },
