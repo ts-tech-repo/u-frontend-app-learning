@@ -46,6 +46,16 @@ const messages = defineMessages({
     defaultMessage: '{percent}% of content in this course is locked and available only for those who upgrade.',
     description: 'It indicate the relative size of content that is locked in the course (100% - %open_content)',
   },
+  certificateCongratulations: {
+    id: 'progress.courseCompletion.certificateCongratulations',
+    defaultMessage: 'Congratulations! You have successfully achieved a minimum of 60% in all Knowledge Checks. Click here to generate your certificate.',
+    description: 'Message shown to the learner when all knowledge checks are passed and the certificate is ready to be generated.',
+  },
+  certificateAlreadyGenerated: {
+    id: 'progress.courseCompletion.certificateAlreadyGenerated',
+    defaultMessage: 'Your certificate has already been generated. Click here to view your certificate',
+    description: 'Message shown to the learner when the certificate has already been generated and can be viewed.',
+  },
   generateCertificate: {
     id: 'progress.courseCompletion.generateCertificate',
     defaultMessage: 'Generate Certificate',

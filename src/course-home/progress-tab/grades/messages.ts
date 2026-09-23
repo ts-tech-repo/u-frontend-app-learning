@@ -208,6 +208,11 @@ const messages = defineMessages({
     defaultMessage: 'Score',
     description: 'It indicate how many points the learner have socred scored in particular assignment, or exam',
   },
+  gradePercent:{
+    id: 'progress.gradePercent',
+    defaultMessage: 'Grade',
+    description: 'It indicate how many points the learner have socred scored in particular assignment, or exam',
+  },
   weight: {
     id: 'progress.weight',
     defaultMessage: 'Weight',

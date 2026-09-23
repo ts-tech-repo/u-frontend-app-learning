@@ -4,6 +4,7 @@ import { useContextId } from '../../data/hooks';
 import ProgressTabCertificateStatusSidePanelSlot from '../../plugin-slots/ProgressTabCertificateStatusSidePanelSlot';
 
 import CourseCompletion from './course-completion/CourseCompletion';
+import useCertificateEligibility from '../data/useCertificateEligibility';
 import ProgressHeader from './ProgressHeader';
 
 import ProgressTabCertificateStatusMainBodySlot from '../../plugin-slots/ProgressTabCertificateStatusMainBodySlot';
@@ -11,10 +12,17 @@ import ProgressTabCourseGradeSlot from '../../plugin-slots/ProgressTabCourseGrad
 import ProgressTabGradeBreakdownSlot from '../../plugin-slots/ProgressTabGradeBreakdownSlot';
 import ProgressTabRelatedLinksSlot from '../../plugin-slots/ProgressTabRelatedLinksSlot';
 import { useModel } from '../../generic/model-store';
+import CourseCompletionCertificate from './course-completion/CourseCompletionCertificate';
 
 const ProgressTab = () => {
   const courseId = useContextId();
   const { disableProgressGraph } = useModel('progress', courseId);
+
+  const {
+    isCheckingEligibility,
+    isEligible,
+    allChecksPassed,
+  } = useCertificateEligibility(courseId);
 
   const windowWidth = useWindowSize().width;
   if (windowWidth === undefined) {
@@ -32,7 +40,12 @@ const ProgressTab = () => {
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
           <ProgressTabCertificateStatusMainBodySlot />
-          <ProgressTabCourseGradeSlot />
+          {!disableProgressGraph
+            && !isCheckingEligibility
+            && isEligible
+            && allChecksPassed
+            && <CourseCompletionCertificate courseId={courseId} />}
+          {/* <ProgressTabCourseGradeSlot /> */}
           <ProgressTabGradeBreakdownSlot />
         </div>
 
