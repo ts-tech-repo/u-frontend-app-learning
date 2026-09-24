@@ -63,6 +63,8 @@ export default function useCertificateEligibility(courseId) {
 
   const allChecksPassed = failedChecks.length === 0;
 
+  const totalKnowledgeChecks = eligibilityDetails?.knowledge_checks?.length || 0;
+
   return {
     isCheckingEligibility,
     isCompleted,
@@ -70,5 +72,6 @@ export default function useCertificateEligibility(courseId) {
     eligibilityDetails,
     failedChecks,
     allChecksPassed,
+    totalKnowledgeChecks,
   };
 }

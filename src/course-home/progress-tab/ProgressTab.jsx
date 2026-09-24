@@ -2,11 +2,9 @@ import React from 'react';
 import { useWindowSize } from '@openedx/paragon';
 import { useContextId } from '../../data/hooks';
 import ProgressTabCertificateStatusSidePanelSlot from '../../plugin-slots/ProgressTabCertificateStatusSidePanelSlot';
-
 import CourseCompletion from './course-completion/CourseCompletion';
 import useCertificateEligibility from '../data/useCertificateEligibility';
 import ProgressHeader from './ProgressHeader';
-
 import ProgressTabCertificateStatusMainBodySlot from '../../plugin-slots/ProgressTabCertificateStatusMainBodySlot';
 import ProgressTabCourseGradeSlot from '../../plugin-slots/ProgressTabCourseGradeSlot';
 import ProgressTabGradeBreakdownSlot from '../../plugin-slots/ProgressTabGradeBreakdownSlot';
@@ -23,12 +21,13 @@ const ProgressTab = () => {
     isEligible,
     isCompleted,
     allChecksPassed,
-    eligibilityDetails
+    eligibilityDetails,
+    totalKnowledgeChecks
   } = useCertificateEligibility(courseId);
 
   const windowWidth = useWindowSize().width;
   if (windowWidth === undefined) {
-    // Bail because we don't want to load <CertificateStatus/> twice, emitting 'visited' events both times.
+    // Bail because we don't want to load twice, emitting 'visited' events both times.
     // This is a hacky solution, since the user can resize the screen and still get two visited events.
     // But I'm leaving a larger refactor as an exercise to a future reader.
     return null;
@@ -42,14 +41,18 @@ const ProgressTab = () => {
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
           <ProgressTabCertificateStatusMainBodySlot />
-          {!isCheckingEligibility && isEligible && allChecksPassed && 
-            <CourseCompletionCertificate 
-              courseId={courseId} 
-              eligibilityDetails={eligibilityDetails}
-              isCompleted={isCompleted}
-            />}
           {/* <ProgressTabCourseGradeSlot /> */}
           <ProgressTabGradeBreakdownSlot />
+
+          <CourseCompletionCertificate
+            courseId={courseId}
+            isCheckingEligibility={isCheckingEligibility}
+            isEligible={isEligible}
+            allChecksPassed={allChecksPassed}
+            isCompleted={isCompleted}
+            eligibilityDetails={eligibilityDetails}
+            totalKnowledgeChecks={totalKnowledgeChecks}
+          />
         </div>
 
         {/* Side panel */}

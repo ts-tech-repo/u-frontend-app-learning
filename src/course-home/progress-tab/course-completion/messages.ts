@@ -46,15 +46,19 @@ const messages = defineMessages({
     defaultMessage: '{percent}% of content in this course is locked and available only for those who upgrade.',
     description: 'It indicate the relative size of content that is locked in the course (100% - %open_content)',
   },
+  certificateCriteria: {
+    id: 'progress.courseCompletion.certificateCriteria',
+    defaultMessage: '<b>Certificate Criteria:</b> Complete all {totalChecks} Knowledge Checks with at least {minimumScore} in each to qualify for the certificate.',
+    description: 'Default message shown to the learner explaining what is required to unlock the certificate.',
+  },
   certificateCongratulations: {
     id: 'progress.courseCompletion.certificateCongratulations',
-    defaultMessage: 'Congratulations! You have successfully achieved a minimum of {minimumScore} in all Knowledge Checks. Click <link>here</link>  to generate your certificate.',
+    defaultMessage: 'Congratulations! You have met the requirements to earn your certificate.',
     description: 'Message shown to the learner when all knowledge checks are passed and the certificate is ready to be generated.',
   },
-
   certificateAlreadyGenerated: {
     id: 'progress.courseCompletion.certificateAlreadyGenerated',
-    defaultMessage: 'Your certificate has already been generated. Click <link>here</link> to view your certificate.',
+    defaultMessage: 'Your certificate has already been generated.',
     description: 'Message shown to the learner when the certificate has already been generated and can be viewed.',
   },
   generateCertificate: {
@@ -65,7 +69,7 @@ const messages = defineMessages({
   viewCertificate: {
     id: 'progress.courseCompletion.viewCertificate',
     defaultMessage: 'View Certificate',
-    description: 'Button label that opens the survey/certificate flow in an iframe',
+    description: 'Button label shown instead of "Generate Certificate" once the certificate already exists',
   },
   checkingEligibility: {
     id: 'progress.courseCompletion.checkingEligibility',
@@ -77,20 +81,10 @@ const messages = defineMessages({
     defaultMessage: 'Your Certificate',
     description: 'Title of the modal dialog that displays the survey/certificate iframe',
   },
-  certificateLocked: {
-    id: 'progress.courseCompletion.certificateLocked',
-    defaultMessage: 'Score {minScore}% to unlock your certificate.',
-    description: 'Shown under the disabled button when one or more Knowledge Checks are below the passing score',
-  },
-  certificateNotYetAvailable: {
-    id: 'progress.courseCompletion.certificateNotYetAvailable',
-    defaultMessage: 'Your certificate is not available yet.',
-    description: 'Shown under the disabled button when eligibility could not be confirmed',
-  },
   loading: {
     id: 'progress.courseCompletion.loading',
     defaultMessage: 'Loading',
-    description: 'Screen-reader-only text for the spinner on the Generate Certificate button',
+    description: 'Screen-reader-only text for the spinner on the Generate/View Certificate button',
   },
 });
 
