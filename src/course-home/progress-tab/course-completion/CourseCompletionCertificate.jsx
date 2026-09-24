@@ -103,7 +103,7 @@ const CourseCompletionCertificate = ({
 
   return (
     <>
-      <section className="course-completion-certificate mb-4 p-4 border rounded">
+      <section className="text-dark-700 mb-4 rounded raised-card p-4 bg-white">
         <p className="mb-3">{statusMessage}</p>
 
         <Button
