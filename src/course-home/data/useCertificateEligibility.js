@@ -12,10 +12,24 @@ import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
  * - allChecksPassed: true only when every knowledge check has passed
  */
 export default function useCertificateEligibility(courseId) {
+  const ENABLE_CUSTOM_CERTIFICATE_VIEW = getConfig().ENABLE_CUSTOM_CERTIFICATE_VIEW;
   const [isCheckingEligibility, setIsCheckingEligibility] = useState(true);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isEligible, setIsEligible] = useState(false);
   const [eligibilityDetails, setEligibilityDetails] = useState(null);
+
+  if (!ENABLE_CUSTOM_CERTIFICATE_VIEW) {
+    return {
+      enableCustomCertificateView: false,
+      isCheckingEligibility: false,
+      isCompleted: false,
+      isEligible: false,
+      eligibilityDetails: null,
+      failedChecks: [],
+      allChecksPassed: false,
+      totalKnowledgeChecks: null,
+    };
+  }
 
   useEffect(() => {
     let isMounted = true;
@@ -66,6 +80,7 @@ export default function useCertificateEligibility(courseId) {
   const totalKnowledgeChecks = eligibilityDetails?.knowledge_checks?.length || 0;
 
   return {
+    enableCustomCertificateView: ENABLE_CUSTOM_CERTIFICATE_VIEW,
     isCheckingEligibility,
     isCompleted,
     isEligible,

@@ -17,6 +17,7 @@ const ProgressTab = () => {
   const { disableProgressGraph } = useModel('progress', courseId);
 
   const {
+    enableCustomCertificateView,
     isCheckingEligibility,
     isEligible,
     isCompleted,
@@ -41,10 +42,12 @@ const ProgressTab = () => {
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
           <ProgressTabCertificateStatusMainBodySlot />
-          {/* <ProgressTabCourseGradeSlot /> */}
-          <ProgressTabGradeBreakdownSlot />
+          {!enableCustomCertificateView && <ProgressTabCourseGradeSlot /> }
+          <ProgressTabGradeBreakdownSlot 
+            enableCustomCertificateView={enableCustomCertificateView}
+          />
 
-          <CourseCompletionCertificate
+          {enableCustomCertificateView && <CourseCompletionCertificate
             courseId={courseId}
             isCheckingEligibility={isCheckingEligibility}
             isEligible={isEligible}
@@ -52,7 +55,7 @@ const ProgressTab = () => {
             isCompleted={isCompleted}
             eligibilityDetails={eligibilityDetails}
             totalKnowledgeChecks={totalKnowledgeChecks}
-          />
+          /> }
         </div>
 
         {/* Side panel */}

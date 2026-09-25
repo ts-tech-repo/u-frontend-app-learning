@@ -177,6 +177,7 @@ initialize({
         ENTERPRISE_LEARNER_PORTAL_URL: process.env.ENTERPRISE_LEARNER_PORTAL_URL || null,
         ENABLE_JUMPNAV: process.env.ENABLE_JUMPNAV || null,
         ENABLE_NOTICES: process.env.ENABLE_NOTICES || null,
+        ENABLE_CUSTOM_CERTIFICATE_VIEW: process.env.ENABLE_CUSTOM_CERTIFICATE_VIEW || null,
         INSIGHTS_BASE_URL: process.env.INSIGHTS_BASE_URL || null,
         SEARCH_CATALOG_URL: process.env.SEARCH_CATALOG_URL || null,
         SOCIAL_UTM_MILESTONE_CAMPAIGN: process.env.SOCIAL_UTM_MILESTONE_CAMPAIGN || null,
