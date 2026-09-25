@@ -12,36 +12,51 @@ import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
  * - allChecksPassed: true only when every knowledge check has passed
  */
 export default function useCertificateEligibility(courseId) {
-  const ENABLE_CUSTOM_CERTIFICATE_VIEW = getConfig().ENABLE_CUSTOM_CERTIFICATE_VIEW;
+  const [enableCustomCertificateView, setEnableCustomCertificateView] = useState(false);
   const [isCheckingEligibility, setIsCheckingEligibility] = useState(true);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isEligible, setIsEligible] = useState(false);
   const [eligibilityDetails, setEligibilityDetails] = useState(null);
 
-  if (!ENABLE_CUSTOM_CERTIFICATE_VIEW) {
-    return {
-      enableCustomCertificateView: false,
-      isCheckingEligibility: false,
-      isCompleted: false,
-      isEligible: false,
-      eligibilityDetails: null,
-      failedChecks: [],
-      allChecksPassed: false,
-      totalKnowledgeChecks: null,
-    };
-  }
-
   useEffect(() => {
     let isMounted = true;
 
-    async function checkEligibility() {
+    async function checkCertificate() {
       if (!courseId) {
         setIsCheckingEligibility(false);
         return;
       }
 
       try {
-        const statusUrl = `${getConfig().LMS_BASE_URL}/extras/certificate/status/`;
+        const lmsBaseUrl = getConfig().LMS_BASE_URL;
+
+        // Check course-level certificate setting
+        const enabledUrl = `${lmsBaseUrl}/extras/certificate/enabled/`;
+
+        const { data: enabledData } =
+          await getAuthenticatedHttpClient().get(enabledUrl, {
+            params: { course_id: courseId },
+          });
+
+        if (!isMounted) {
+          return;
+        }
+
+        const enabled = Boolean(enabledData?.enabled);
+
+        setEnableCustomCertificateView(enabled);
+
+        // Do not check certificate eligibility if disabled for this course.
+        if (!enabled) {
+          setIsCheckingEligibility(false);
+          setIsEligible(false);
+          setIsCompleted(false);
+          setEligibilityDetails(null);
+          return;
+        }
+
+        // Existing eligibility check
+        const statusUrl = `${lmsBaseUrl}/extras/certificate/status/`;
 
         const { data } = await getAuthenticatedHttpClient().get(statusUrl, {
           params: { course_id: courseId },
@@ -51,12 +66,15 @@ export default function useCertificateEligibility(courseId) {
           return;
         }
 
-        setIsEligible(Boolean(data && data.eligible));
-        setEligibilityDetails(data ? data.eligibility : null);
-        setIsCompleted(Boolean(data && data.completed));
+        setIsEligible(Boolean(data?.eligible));
+        setEligibilityDetails(data?.eligibility || null);
+        setIsCompleted(Boolean(data?.completed));
       } catch (err) {
         if (isMounted) {
+          setEnableCustomCertificateView(false);
           setIsEligible(false);
+          setIsCompleted(false);
+          setEligibilityDetails(null);
         }
       } finally {
         if (isMounted) {
@@ -65,7 +83,7 @@ export default function useCertificateEligibility(courseId) {
       }
     }
 
-    checkEligibility();
+    checkCertificate();
 
     return () => {
       isMounted = false;
@@ -80,7 +98,7 @@ export default function useCertificateEligibility(courseId) {
   const totalKnowledgeChecks = eligibilityDetails?.knowledge_checks?.length || 0;
 
   return {
-    enableCustomCertificateView: ENABLE_CUSTOM_CERTIFICATE_VIEW,
+    enableCustomCertificateView,
     isCheckingEligibility,
     isCompleted,
     isEligible,
