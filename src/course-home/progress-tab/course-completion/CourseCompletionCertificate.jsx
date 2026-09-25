@@ -70,9 +70,7 @@ const CourseCompletionCertificate = ({
   const isButtonDisabled = isCheckingEligibility || !(isQualified || isCompleted);
 
   let statusMessage;
-  if (isCompleted) {
-    statusMessage = intl.formatMessage(messages.certificateAlreadyGenerated);
-  } else if (isQualified) {
+  if (isCompleted || isQualified) {
     statusMessage = intl.formatMessage(messages.certificateCongratulations);
   } else {
     statusMessage = intl.formatMessage(messages.certificateCriteria, {

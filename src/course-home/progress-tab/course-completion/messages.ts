@@ -48,12 +48,12 @@ const messages = defineMessages({
   },
   certificateCriteria: {
     id: 'progress.courseCompletion.certificateCriteria',
-    defaultMessage: '<b>Certificate Criteria:</b> Complete all {totalChecks} Knowledge Checks with at least {minimumScore} in each to qualify for the certificate.',
+    defaultMessage: '<b>Program Completion Criteria:</b> Complete all Knowledge Checks with at least {minimumScore} score',
     description: 'Default message shown to the learner explaining what is required to unlock the certificate.',
   },
   certificateCongratulations: {
     id: 'progress.courseCompletion.certificateCongratulations',
-    defaultMessage: 'Congratulations! You have met the requirements to earn your certificate.',
+    defaultMessage: 'Congratulations! You have successfully completed the program.',
     description: 'Message shown to the learner when all knowledge checks are passed and the certificate is ready to be generated.',
   },
   certificateAlreadyGenerated: {
