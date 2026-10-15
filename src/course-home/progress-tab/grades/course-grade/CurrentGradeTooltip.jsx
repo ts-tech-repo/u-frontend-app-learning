@@ -37,6 +37,20 @@ const CurrentGradeTooltip = ({ tooltipClassName }) => {
       <OverlayTrigger
         show
         placement="top"
+        popperConfig={{
+          modifiers: [
+            {
+              name: 'initialPosition',
+              enabled: true,
+              phase: 'afterWrite',
+              fn: ({ instance }) => {
+                requestAnimationFrame(() => {
+                  instance.update();
+                });
+              },
+            },
+          ],
+        }}
         overlay={(
           <Popover id={`${isPassing ? 'passing' : 'non-passing'}-grade-tooltip`} aria-hidden="true" className={tooltipClassName}>
             <Popover.Content data-testid="currentGradeTooltipContent" className={isPassing ? 'text-white' : 'text-dark-700'}>

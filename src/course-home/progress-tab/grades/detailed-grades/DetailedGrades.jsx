@@ -1,4 +1,5 @@
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
+import PropTypes from 'prop-types';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Locked } from '@openedx/paragon/icons';
@@ -11,7 +12,9 @@ import DetailedGradesTable from './DetailedGradesTable';
 
 import messages from '../messages';
 
-const DetailedGrades = () => {
+const DetailedGrades = ({
+  enableCustomCertificateView,
+}) => {
   const intl = useIntl();
   const { administrator } = getAuthenticatedUser();
   const courseId = useContextId();
@@ -72,7 +75,7 @@ const DetailedGrades = () => {
         </div>
       )}
       {hasSectionScores && (
-        <DetailedGradesTable />
+        <DetailedGradesTable enableCustomCertificateView={enableCustomCertificateView}/>
       )}
       {!hasSectionScores && (
         <p className="small">{intl.formatMessage(emptyTableMsg)}</p>
@@ -86,4 +89,10 @@ const DetailedGrades = () => {
   );
 };
 
+DetailedGrades.propTypes = {
+  enableCustomCertificateView: PropTypes.bool,
+}
+DetailedGrades.defaultProps = {
+  enableCustomCertificateView: false
+}
 export default DetailedGrades;
