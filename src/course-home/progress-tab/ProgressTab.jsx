@@ -42,11 +42,6 @@ const ProgressTab = () => {
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
           <ProgressTabCertificateStatusMainBodySlot />
-          {!enableCustomCertificateView && <ProgressTabCourseGradeSlot /> }
-          <ProgressTabGradeBreakdownSlot 
-            enableCustomCertificateView={enableCustomCertificateView}
-          />
-
           {enableCustomCertificateView && <CourseCompletionCertificate
             courseId={courseId}
             isCheckingEligibility={isCheckingEligibility}
@@ -56,6 +51,12 @@ const ProgressTab = () => {
             eligibilityDetails={eligibilityDetails}
             totalKnowledgeChecks={totalKnowledgeChecks}
           /> }
+          {!enableCustomCertificateView && <ProgressTabCourseGradeSlot /> }
+          <ProgressTabGradeBreakdownSlot 
+            enableCustomCertificateView={enableCustomCertificateView}
+          />
+
+          
         </div>
 
         {/* Side panel */}
